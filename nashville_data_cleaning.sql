@@ -2,6 +2,8 @@ CREATE DATABASE NashvilleHousingDB;
 
 USE NashvilleHousingDB;
 
+
+-- Copying The Original Database Into A New Table For Cleaning
 DROP TABLE IF EXISTS Nashville_Housing_Clean;
 SELECT *
 INTO Nashville_Housing_Clean
@@ -123,7 +125,7 @@ WITH
         SELECT *,
             ROW_NUMBER() OVER (
             PARTITION BY ParcelID, PropertyAddress, SalePrice, SaleDate, LegalReference
-            ORDER BY UniqueID
+        ORDER BY UniqueID
         ) AS row_num
         FROM Nashville_Housing_Clean
     )
